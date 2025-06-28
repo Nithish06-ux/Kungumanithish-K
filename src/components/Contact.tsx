@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -6,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, MapPin, Phone, Send, Github, Linkedin } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -14,6 +14,7 @@ const Contact = () => {
     subject: '',
     message: ''
   });
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -23,31 +24,48 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     
-    // Create mailto link
-    const subject = encodeURIComponent(formData.subject || 'Contact from Portfolio');
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-    );
-    const mailtoLink = `mailto:kungumanithish@gmail.com?subject=${subject}&body=${body}`;
-    
-    // Open email client
-    window.location.href = mailtoLink;
-    
-    toast({
-      title: "Email client opened!",
-      description: "Your email client should open with the pre-filled message.",
-    });
+    try {
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject || 'Contact from Portfolio',
+        message: formData.message,
+        to_email: 'kungumanithish@gmail.com'
+      };
 
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      subject: '',
-      message: ''
-    });
+      await emailjs.send(
+        'service_614l3np',
+        'template_vbd2md9',
+        templateParams,
+        'XCr85iJdvezNE9HnB'
+      );
+
+      toast({
+        title: "Message sent successfully!",
+        description: "Thank you for your message. I'll get back to you soon.",
+      });
+
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
+    } catch (error) {
+      console.error('EmailJS error:', error);
+      toast({
+        title: "Failed to send message",
+        description: "There was an error sending your message. Please try again or contact me directly.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const contactInfo = [
@@ -85,7 +103,6 @@ const Contact = () => {
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8">
-          {/* Contact Information */}
           <div className="space-y-6">
             {contactInfo.map((info, index) => (
               <Card key={index} className="bg-slate-800/50 border-slate-700 backdrop-blur-sm hover:bg-slate-800/70 transition-all duration-300 group">
@@ -103,7 +120,6 @@ const Contact = () => {
               </Card>
             ))}
 
-            {/* Social Links */}
             <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-sm">
               <CardContent className="p-6">
                 <h3 className="text-white font-medium mb-4">Connect With Me</h3>
@@ -134,7 +150,6 @@ const Contact = () => {
             </Card>
           </div>
 
-          {/* Contact Form */}
           <div className="lg:col-span-2">
             <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-sm">
               <CardContent className="p-8">
@@ -151,6 +166,7 @@ const Contact = () => {
                         value={formData.name}
                         onChange={handleChange}
                         required
+                        disabled={isLoading}
                         className="bg-slate-700/50 border-slate-600 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-purple-500/20"
                         placeholder="Enter your name"
                       />
@@ -166,6 +182,7 @@ const Contact = () => {
                         value={formData.email}
                         onChange={handleChange}
                         required
+                        disabled={isLoading}
                         className="bg-slate-700/50 border-slate-600 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-purple-500/20"
                         placeholder="Enter your email"
                       />
@@ -182,6 +199,7 @@ const Contact = () => {
                       name="subject"
                       value={formData.subject}
                       onChange={handleChange}
+                      disabled={isLoading}
                       className="bg-slate-700/50 border-slate-600 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-purple-500/20"
                       placeholder="What's this about?"
                     />
@@ -198,6 +216,7 @@ const Contact = () => {
                       value={formData.message}
                       onChange={handleChange}
                       required
+                      disabled={isLoading}
                       className="bg-slate-700/50 border-slate-600 text-white placeholder-gray-400 focus:border-purple-500 focus:ring-purple-500/20 resize-none"
                       placeholder="Tell me about your project or just say hello!"
                     />
@@ -205,10 +224,11 @@ const Contact = () => {
 
                   <Button 
                     type="submit"
-                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2"
+                    disabled={isLoading}
+                    className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                   >
                     <Send size={18} />
-                    Send Message
+                    {isLoading ? 'Sending...' : 'Send Message'}
                   </Button>
                 </form>
               </CardContent>
@@ -216,7 +236,6 @@ const Contact = () => {
           </div>
         </div>
 
-        {/* Call to Action */}
         <div className="text-center mt-16 p-8 bg-gradient-to-r from-purple-600/10 to-pink-600/10 rounded-2xl border border-purple-500/20">
           <h3 className="text-2xl font-bold text-white mb-4">
             Ready to work together?
