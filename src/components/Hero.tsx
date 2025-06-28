@@ -65,11 +65,9 @@ const Hero = () => {
           <div className="relative">
             <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full bg-gradient-to-br from-purple-600 via-pink-600 to-orange-500 p-1">
               <div className="w-full h-full rounded-full bg-slate-800 flex items-center justify-center overflow-hidden">
-                <img 
-                  src="https://ik.imagekit.io/rmlbayysp/1751116123016-WhatsApp_Image_2025-06-28_at_16.28.33_8ae90d3d_C6tZN8GE3.jpg" 
-                  alt="Kungumanithish"
-                  className="w-full h-full object-cover rounded-full"
-                />
+                <div className="w-full h-full bg-gradient-to-br from-slate-700 to-slate-600 rounded-full flex items-center justify-center">
+                  <span className="text-6xl lg:text-8xl font-bold text-white">K</span>
+                </div>
               </div>
             </div>
             {/* Floating Elements */}
