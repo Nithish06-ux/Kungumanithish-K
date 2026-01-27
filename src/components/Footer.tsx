@@ -56,7 +56,7 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="border-t border-slate-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
           <div className="flex items-center gap-1">
-            <span>© {currentYear} Kungumanithish. Made with</span>
+            <span>© {currentYear} Kungumanithish </span>
             <Heart size={14} className="text-red-500 fill-current" />
             <span>and lots of coffee.</span>
           </div>
