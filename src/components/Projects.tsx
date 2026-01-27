@@ -113,14 +113,6 @@ const Projects = () => {
                       <Github size={16} />
                       View Code
                     </Button>
-                    <Button 
-                      size="sm" 
-                      variant="outline" 
-                      className="border-slate-600 text-gray-300 hover:bg-slate-700 flex items-center gap-2"
-                    >
-                      <ExternalLink size={16} />
-                      Live Demo
-                    </Button>
                   </div>
                 </div>
               </CardContent>
