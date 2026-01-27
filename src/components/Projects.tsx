@@ -134,16 +134,6 @@ const Projects = () => {
                     </div>
                   </div>
 
-                  {/* Action Buttons */}
-                  <div className="flex gap-3 pt-4">
-                    <Button 
-                      size="sm" 
-                      className={`bg-gradient-to-r ${project.color} text-white hover:opacity-90 transition-opacity flex items-center gap-2`}
-                    >
-                      <Github size={16} />
-                      View Code
-                    </Button>
-                  </div>
                 </div>
               </CardContent>
             </Card>
