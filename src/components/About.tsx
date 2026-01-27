@@ -1,10 +1,7 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { BookOpen, Calendar, MapPin } from 'lucide-react';
-
 const About = () => {
-  return (
-    <section id="about" className="py-20 px-4">
+  return <section id="about" className="py-20 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
@@ -81,15 +78,13 @@ const About = () => {
                 <div className="text-gray-400 text-sm">Skills Acquired</div>
               </div>
               <div className="text-center p-4 bg-slate-800/30 rounded-lg border border-slate-700/50">
-                <div className="text-2xl font-bold text-orange-400">2</div>
+                <div className="text-2xl font-bold text-orange-400">5</div>
                 <div className="text-gray-400 text-sm">Projects Built</div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default About;
