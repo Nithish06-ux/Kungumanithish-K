@@ -31,7 +31,7 @@ const Skills = () => {
       icon: Image,
       color: "from-orange-500 to-red-500", 
       skills: [
-        { name: "Python", level: 70 },
+        { name: "Java", level: 70 },
         { name: "Problem Solving", level: 80 },
         { name: "Data Structures", level: 65 },
         { name: "Algorithm Design", level: 60 },
