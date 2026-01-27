@@ -1,7 +1,7 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Github, ExternalLink, Code, BookOpen } from 'lucide-react';
+import { Github, Code, BookOpen, UserCheck, Calendar } from 'lucide-react';
 
 const Projects = () => {
   const projects = [
@@ -33,6 +33,36 @@ const Projects = () => {
         "Score Tracking System",
         "Smooth Animations",
         "Interactive Gameplay"
+      ]
+    },
+    {
+      title: "Automated Attendance System",
+      description: "A smart attendance management solution for schools and colleges, featuring automated tracking and comprehensive reporting capabilities.",
+      image: "/lovable-uploads/f558f7d2-cb1d-4a4d-a48d-f233d5d14976.png",
+      technologies: ["HTML5", "CSS3", "JavaScript", "Database"],
+      category: "Web Application",
+      icon: UserCheck,
+      color: "from-green-500 to-teal-500",
+      features: [
+        "Automated Attendance Tracking",
+        "Real-time Reports",
+        "Student Database Management",
+        "Admin Dashboard"
+      ]
+    },
+    {
+      title: "Event Management System",
+      description: "A comprehensive platform for organizing and managing events, from planning to execution with seamless coordination tools.",
+      image: "/lovable-uploads/f558f7d2-cb1d-4a4d-a48d-f233d5d14976.png",
+      technologies: ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
+      category: "Web Application",
+      icon: Calendar,
+      color: "from-orange-500 to-red-500",
+      features: [
+        "Event Scheduling",
+        "Registration System",
+        "Notification Alerts",
+        "Analytics Dashboard"
       ]
     }
   ];
