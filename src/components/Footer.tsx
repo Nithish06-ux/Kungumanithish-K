@@ -1,5 +1,5 @@
 
-import { Heart, ArrowUp } from 'lucide-react';
+import { ArrowUp } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 
 const Footer = () => {
@@ -56,11 +56,9 @@ const Footer = () => {
         {/* Bottom Section */}
         <div className="border-t border-slate-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
           <div className="flex items-center gap-1">
-            <span>© {currentYear} Kungumanithish </span>
-            <Heart size={14} className="text-red-500 fill-current" />
-            <span>and lots of coffee.</span>
+            <span>© {currentYear} Kungumanithish</span>
           </div>
-          
+
           <div className="text-center md:text-right">
             <p>
               Built with React, TypeScript & Tailwind CSS
