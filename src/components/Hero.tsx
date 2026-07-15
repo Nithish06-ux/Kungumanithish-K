@@ -1,6 +1,7 @@
 
-import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowDown, Download, Github, Linkedin, Mail } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import { socialLinks } from "@/data/portfolio-data";
 
 const Hero = () => {
   const scrollToAbout = () => {
@@ -14,7 +15,7 @@ const Hero = () => {
     <section id="home" className="min-h-screen flex items-center justify-center px-4 pt-16">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
         {/* Text Content */}
-        <div className="text-center lg:text-left space-y-6">
+        <div className="text-center lg:text-left space-y-6 animate-fade-in">
           <div className="space-y-4">
             <p className="text-purple-400 text-lg font-medium">Hello, I'm</p>
             <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
@@ -47,27 +48,52 @@ const Hero = () => {
             </Button>
           </div>
 
+          <div className="flex justify-center lg:justify-start">
+            <a href="/resume.pdf" download>
+              <Button 
+                variant="ghost" 
+                className="text-gray-400 hover:text-purple-400 border border-slate-600 hover:border-purple-500/50 rounded-full px-6 py-2 transition-all duration-300 flex items-center gap-2"
+              >
+                <Download size={18} />
+                Download Resume
+              </Button>
+            </a>
+          </div>
+
           <div className="flex gap-4 justify-center lg:justify-start pt-4">
-            <Button size="sm" variant="ghost" className="text-gray-400 hover:text-purple-400 transition-colors">
-              <Github size={24} />
-            </Button>
-            <Button size="sm" variant="ghost" className="text-gray-400 hover:text-purple-400 transition-colors">
-              <Linkedin size={24} />
-            </Button>
-            <Button size="sm" variant="ghost" className="text-gray-400 hover:text-purple-400 transition-colors">
-              <Mail size={24} />
-            </Button>
+            <a href={socialLinks.github} target="_blank" rel="noopener noreferrer">
+              <Button size="sm" variant="ghost" className="text-gray-400 hover:text-purple-400 transition-colors">
+                <Github size={24} />
+              </Button>
+            </a>
+            <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer">
+              <Button size="sm" variant="ghost" className="text-gray-400 hover:text-purple-400 transition-colors">
+                <Linkedin size={24} />
+              </Button>
+            </a>
+            <a href={socialLinks.email}>
+              <Button size="sm" variant="ghost" className="text-gray-400 hover:text-purple-400 transition-colors">
+                <Mail size={24} />
+              </Button>
+            </a>
           </div>
         </div>
 
         {/* Profile Image */}
-        <div className="flex justify-center lg:justify-end">
+        <div className="flex justify-center lg:justify-end animate-scale-in">
           <div className="relative">
             <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full bg-gradient-to-br from-purple-600 via-pink-600 to-orange-500 p-1">
               <div className="w-full h-full rounded-full bg-slate-800 flex items-center justify-center overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-br from-slate-700 to-slate-600 rounded-full flex items-center justify-center">
-                  <span className="text-6xl lg:text-8xl font-bold text-white">K</span>
-                </div>
+                <img
+                  src="/profile-photo.jpg"
+                  alt="Kungumanithish - UI/UX Designer"
+                  className="w-full h-full object-cover rounded-full"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    target.parentElement!.innerHTML = '<div class="w-full h-full bg-gradient-to-br from-slate-700 to-slate-600 rounded-full flex items-center justify-center"><span class="text-6xl lg:text-8xl font-bold text-white">K</span></div>';
+                  }}
+                />
               </div>
             </div>
             {/* Floating Elements */}

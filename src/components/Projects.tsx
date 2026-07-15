@@ -1,76 +1,22 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Github, Code, BookOpen, UserCheck, Calendar } from 'lucide-react';
+import { projects } from "@/data/portfolio-data";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const Projects = () => {
-  const projects = [
-    {
-      title: "ERP School Project",
-      description: "A comprehensive digital solution for school resource planning, built with modern web technologies. Features include student management, attendance tracking, and administrative tools.",
-      image: "/lovable-uploads/f558f7d2-cb1d-4a4d-a48d-f233d5d14976.png",
-      technologies: ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
-      category: "Web Application",
-      icon: BookOpen,
-      color: "from-blue-500 to-cyan-500",
-      features: [
-        "Student Information Management",
-        "Attendance Tracking System", 
-        "Administrative Dashboard",
-        "Responsive Design"
-      ]
-    },
-    {
-      title: "AI Snake Game",
-      description: "An interactive snake game enhanced with basic AI logic, showcasing front-end development skills and game programming fundamentals.",
-      image: "/lovable-uploads/f558f7d2-cb1d-4a4d-a48d-f233d5d14976.png",
-      technologies: ["JavaScript", "HTML5 Canvas", "CSS3", "Game Logic"],
-      category: "Game Development",
-      icon: Code,
-      color: "from-purple-500 to-pink-500",
-      features: [
-        "AI-Powered Snake Movement",
-        "Score Tracking System",
-        "Smooth Animations",
-        "Interactive Gameplay"
-      ]
-    },
-    {
-      title: "Automated Attendance System",
-      description: "A smart attendance management solution for schools and colleges, featuring automated tracking and comprehensive reporting capabilities.",
-      image: "/lovable-uploads/f558f7d2-cb1d-4a4d-a48d-f233d5d14976.png",
-      technologies: ["HTML5", "CSS3", "JavaScript", "Database"],
-      category: "Web Application",
-      icon: UserCheck,
-      color: "from-green-500 to-teal-500",
-      features: [
-        "Automated Attendance Tracking",
-        "Real-time Reports",
-        "Student Database Management",
-        "Admin Dashboard"
-      ]
-    },
-    {
-      title: "Event Management System",
-      description: "A comprehensive platform for organizing and managing events, from planning to execution with seamless coordination tools.",
-      image: "/lovable-uploads/f558f7d2-cb1d-4a4d-a48d-f233d5d14976.png",
-      technologies: ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
-      category: "Web Application",
-      icon: Calendar,
-      color: "from-orange-500 to-red-500",
-      features: [
-        "Event Scheduling",
-        "Registration System",
-        "Notification Alerts",
-        "Analytics Dashboard"
-      ]
-    }
-  ];
+  const { ref: headerRef, isVisible: headerVisible } = useScrollReveal();
+  const { ref: gridRef, isVisible: gridVisible } = useScrollReveal();
 
   return (
     <section id="projects" className="py-20 px-4">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <div
+          ref={headerRef}
+          className={`text-center mb-16 transition-all duration-700 ${
+            headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             My <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Projects</span>
           </h2>
@@ -79,7 +25,12 @@ const Projects = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div
+          ref={gridRef}
+          className={`grid lg:grid-cols-2 gap-8 transition-all duration-700 delay-200 ${
+            gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           {projects.map((project, index) => (
             <Card key={index} className="bg-slate-800/50 border-slate-700 backdrop-blur-sm hover:bg-slate-800/70 transition-all duration-300 group overflow-hidden">
               <div className="relative">
@@ -133,6 +84,17 @@ const Projects = () => {
                       ))}
                     </div>
                   </div>
+
+                  {/* GitHub Action Link */}
+                  {project.github && (
+                    <div className="pt-2">
+                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="inline-block">
+                        <Button size="sm" variant="outline" className="border-slate-600 text-gray-300 hover:text-purple-300 hover:border-purple-500/50 transition-all duration-300 text-xs">
+                          View on GitHub
+                        </Button>
+                      </a>
+                    </div>
+                  )}
 
                 </div>
               </CardContent>

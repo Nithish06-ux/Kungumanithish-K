@@ -1,6 +1,7 @@
 
 import { ArrowUp } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import { navItems } from "@/data/portfolio-data";
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -25,20 +26,13 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div className="flex flex-wrap justify-center gap-6 text-sm">
-            {[
-              { name: 'Home', id: 'home' },
-              { name: 'About', id: 'about' },
-              { name: 'Skills', id: 'skills' },
-              { name: 'Projects', id: 'projects' },
-              { name: 'Services', id: 'services' },
-              { name: 'Contact', id: 'contact' }
-            ].map((link) => (
+            {navItems.map((link) => (
               <button
                 key={link.id}
                 onClick={() => document.getElementById(link.id)?.scrollIntoView({ behavior: 'smooth' })}
                 className="text-gray-400 hover:text-purple-400 transition-colors duration-300"
               >
-                {link.name}
+                {link.label}
               </button>
             ))}
           </div>
@@ -61,7 +55,7 @@ const Footer = () => {
 
           <div className="text-center md:text-right">
             <p>
-              Built with React, TypeScript & Tailwind CSS
+              Built with React, TypeScript & Tailwind CSS | <a href="https://github.com/Nithish06-ux/nithishkportfolio" target="_blank" rel="noopener noreferrer" className="hover:text-purple-400 underline transition-colors duration-300">Source Code</a>
             </p>
           </div>
         </div>

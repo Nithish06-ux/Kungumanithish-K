@@ -3,9 +3,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, MapPin, Phone, Send, Github, Linkedin } from 'lucide-react';
+import { Send, Github, Linkedin, Mail } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 import emailjs from '@emailjs/browser';
+import { contactInfo, socialLinks } from "@/data/portfolio-data";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -16,6 +18,8 @@ const Contact = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const { ref: headerRef, isVisible: headerVisible } = useScrollReveal();
+  const { ref: contentRef, isVisible: contentVisible } = useScrollReveal();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -38,10 +42,10 @@ const Contact = () => {
       };
 
       await emailjs.send(
-        'service_614l3np',
-        'template_vbd2md9',
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         templateParams,
-        'XCr85iJdvezNE9HnB'
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
 
       toast({
@@ -68,31 +72,15 @@ const Contact = () => {
     }
   };
 
-  const contactInfo = [
-    {
-      icon: Mail,
-      title: "Email",
-      details: "kungumanithish@gmail.com",
-      color: "from-purple-500 to-pink-500"
-    },
-    {
-      icon: MapPin,
-      title: "Location",
-      details: "Erode, Tamil Nadu, India",
-      color: "from-blue-500 to-cyan-500"
-    },
-    {
-      icon: Phone,
-      title: "Response Time",
-      details: "Within 24 hours",
-      color: "from-orange-500 to-red-500"
-    }
-  ];
-
   return (
     <section id="contact" className="py-20 px-4">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <div
+          ref={headerRef}
+          className={`text-center mb-16 transition-all duration-700 ${
+            headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             Get In <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Touch</span>
           </h2>
@@ -102,7 +90,12 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div
+          ref={contentRef}
+          className={`grid lg:grid-cols-3 gap-8 transition-all duration-700 delay-200 ${
+            contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <div className="space-y-6">
             {contactInfo.map((info, index) => (
               <Card key={index} className="bg-slate-800/50 border-slate-700 backdrop-blur-sm hover:bg-slate-800/70 transition-all duration-300 group">
@@ -124,27 +117,33 @@ const Contact = () => {
               <CardContent className="p-6">
                 <h3 className="text-white font-medium mb-4">Connect With Me</h3>
                 <div className="flex gap-3">
-                  <Button 
-                    size="sm" 
-                    variant="outline" 
-                    className="border-slate-600 text-gray-300 hover:bg-purple-600/20 hover:border-purple-500/50 hover:text-purple-300 transition-all duration-300"
-                  >
-                    <Github size={16} />
-                  </Button>
-                  <Button 
-                    size="sm" 
-                    variant="outline" 
-                    className="border-slate-600 text-gray-300 hover:bg-blue-600/20 hover:border-blue-500/50 hover:text-blue-300 transition-all duration-300"
-                  >
-                    <Linkedin size={16} />
-                  </Button>
-                  <Button 
-                    size="sm" 
-                    variant="outline" 
-                    className="border-slate-600 text-gray-300 hover:bg-pink-600/20 hover:border-pink-500/50 hover:text-pink-300 transition-all duration-300"
-                  >
-                    <Mail size={16} />
-                  </Button>
+                  <a href={socialLinks.github} target="_blank" rel="noopener noreferrer">
+                    <Button 
+                      size="sm" 
+                      variant="outline" 
+                      className="border-slate-600 text-gray-300 hover:bg-purple-600/20 hover:border-purple-500/50 hover:text-purple-300 transition-all duration-300"
+                    >
+                      <Github size={16} />
+                    </Button>
+                  </a>
+                  <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer">
+                    <Button 
+                      size="sm" 
+                      variant="outline" 
+                      className="border-slate-600 text-gray-300 hover:bg-blue-600/20 hover:border-blue-500/50 hover:text-blue-300 transition-all duration-300"
+                    >
+                      <Linkedin size={16} />
+                    </Button>
+                  </a>
+                  <a href={socialLinks.email}>
+                    <Button 
+                      size="sm" 
+                      variant="outline" 
+                      className="border-slate-600 text-gray-300 hover:bg-pink-600/20 hover:border-pink-500/50 hover:text-pink-300 transition-all duration-300"
+                    >
+                      <Mail size={16} />
+                    </Button>
+                  </a>
                 </div>
               </CardContent>
             </Card>

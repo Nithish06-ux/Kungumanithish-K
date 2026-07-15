@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import { navItems } from "@/data/portfolio-data";
 
 interface NavbarProps {
   activeSection: string;
@@ -9,15 +10,6 @@ interface NavbarProps {
 
 const Navbar = ({ activeSection }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
-
-  const navItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'services', label: 'Services' },
-    { id: 'contact', label: 'Contact' },
-  ];
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);

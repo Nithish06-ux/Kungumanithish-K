@@ -1,9 +1,21 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { BookOpen, Calendar, MapPin } from 'lucide-react';
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+
 const About = () => {
-  return <section id="about" className="py-20 px-4">
+  const { ref: headerRef, isVisible: headerVisible } = useScrollReveal();
+  const { ref: contentRef, isVisible: contentVisible } = useScrollReveal();
+  const { ref: statsRef, isVisible: statsVisible } = useScrollReveal();
+
+  return (
+    <section id="about" className="py-20 px-4">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <div
+          ref={headerRef}
+          className={`text-center mb-16 transition-all duration-700 ${
+            headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             About <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Me</span>
           </h2>
@@ -12,14 +24,26 @@ const About = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div
+          ref={contentRef}
+          className={`grid lg:grid-cols-2 gap-12 items-center transition-all duration-700 delay-200 ${
+            contentVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           {/* Profile Image */}
           <div className="flex justify-center">
             <div className="relative">
               <div className="w-80 h-80 rounded-2xl bg-gradient-to-br from-purple-600/20 to-pink-600/20 backdrop-blur-sm border border-purple-500/30 flex items-center justify-center overflow-hidden">
-                <div className="w-full h-full bg-gradient-to-br from-slate-700/50 to-slate-600/50 rounded-2xl flex items-center justify-center">
-                  <span className="text-8xl font-bold text-white/80">K</span>
-                </div>
+                <img
+                  src="/profile-photo.jpg"
+                  alt="Kungumanithish - UI/UX Designer"
+                  className="w-full h-full object-cover rounded-2xl"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    target.parentElement!.innerHTML = '<div class="w-full h-full bg-gradient-to-br from-slate-700/50 to-slate-600/50 rounded-2xl flex items-center justify-center"><span class="text-8xl font-bold text-white/80">K</span></div>';
+                  }}
+                />
               </div>
               {/* Decorative elements */}
               <div className="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-yellow-400/30 to-orange-500/30 rounded-full blur-xl"></div>
@@ -68,7 +92,12 @@ const About = () => {
             </Card>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-4">
+            <div
+              ref={statsRef}
+              className={`grid grid-cols-3 gap-4 transition-all duration-700 delay-400 ${
+                statsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+            >
               <div className="text-center p-4 bg-slate-800/30 rounded-lg border border-slate-700/50">
                 <div className="text-2xl font-bold text-purple-400">2+</div>
                 <div className="text-gray-400 text-sm">Years of Study</div>
@@ -85,6 +114,8 @@ const About = () => {
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default About;

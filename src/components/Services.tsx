@@ -1,58 +1,24 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Pen, Code, Image, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { services, workingProcess } from "@/data/portfolio-data";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 const Services = () => {
-  const services = [
-    {
-      title: "UI/UX Design",
-      description: "Creating intuitive and visually appealing user interfaces with a focus on user experience and accessibility.",
-      icon: Pen,
-      color: "from-purple-500 to-pink-500",
-      features: [
-        "User Interface Design",
-        "Wireframing & Prototyping", 
-        "User Experience Research",
-        "Design Systems Creation",
-        "Responsive Design Mockups"
-      ],
-      deliverables: "Figma files, Prototypes, Style guides"
-    },
-    {
-      title: "Web Design & Development",
-      description: "Building responsive and modern websites using the latest web technologies and best practices.",
-      icon: Code,
-      color: "from-blue-500 to-cyan-500", 
-      features: [
-        "Responsive Web Development",
-        "HTML, CSS, JavaScript",
-        "Modern Framework Integration",
-        "Performance Optimization",
-        "Cross-browser Compatibility"
-      ],
-      deliverables: "Live websites, Source code, Documentation"
-    },
-    {
-      title: "Digital Solutions",
-      description: "Comprehensive digital solutions tailored to meet specific business and educational needs.",
-      icon: Image,
-      color: "from-orange-500 to-red-500",
-      features: [
-        "Custom Web Applications",
-        "Interactive Prototypes",
-        "Educational Platforms",
-        "Game Development",
-        "Problem-solving Solutions"
-      ],
-      deliverables: "Custom applications, Technical documentation"
-    }
-  ];
+  const { ref: headerRef, isVisible: headerVisible } = useScrollReveal();
+  const { ref: gridRef, isVisible: gridVisible } = useScrollReveal();
+  const { ref: processRef, isVisible: processVisible } = useScrollReveal();
 
   return (
     <section id="services" className="py-20 px-4 bg-slate-900/50">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <div
+          ref={headerRef}
+          className={`text-center mb-16 transition-all duration-700 ${
+            headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
             My <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Services</span>
           </h2>
@@ -61,7 +27,12 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div
+          ref={gridRef}
+          className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-700 delay-200 ${
+            gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           {services.map((service, index) => (
             <Card key={index} className="bg-slate-800/50 border-slate-700 backdrop-blur-sm hover:bg-slate-800/70 transition-all duration-300 group h-full">
               <CardContent className="p-6 flex flex-col h-full">
@@ -115,15 +86,15 @@ const Services = () => {
         </div>
 
         {/* Process Section */}
-        <div className="mt-20">
+        <div
+          ref={processRef}
+          className={`mt-20 transition-all duration-700 delay-300 ${
+            processVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
           <h3 className="text-2xl font-semibold text-white text-center mb-12">My Working Process</h3>
           <div className="grid md:grid-cols-4 gap-6">
-            {[
-              { step: "01", title: "Discovery", description: "Understanding your needs and project requirements" },
-              { step: "02", title: "Planning", description: "Creating detailed project roadmap and timeline" },
-              { step: "03", title: "Design & Development", description: "Bringing ideas to life with code and design" },
-              { step: "04", title: "Delivery", description: "Testing, refinement, and final project delivery" }
-            ].map((process, index) => (
+            {workingProcess.map((process, index) => (
               <div key={index} className="text-center group">
                 <div className="relative mb-4">
                   <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300">
