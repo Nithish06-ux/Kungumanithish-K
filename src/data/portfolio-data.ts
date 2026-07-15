@@ -101,6 +101,54 @@ export const projects = [
       "EmailJS Form Integration",
       "Clean TypeScript Structure"
     ]
+  },
+  {
+    title: "Nithish-Dup (Mah-LLM)",
+    description: "An experimental large language model exploration project, focused on understanding LLM architectures and building custom AI-driven tools.",
+    github: "https://github.com/Nithish06-ux/Nithish-Dup",
+    image: "/lovable-uploads/f558f7d2-cb1d-4a4d-a48d-f233d5d14976.png",
+    technologies: ["Python", "LLM", "AI/ML", "Experimentation"],
+    category: "AI & Research",
+    icon: BookOpen,
+    color: "from-indigo-500 to-purple-500",
+    features: [
+      "LLM Architecture Exploration",
+      "Custom AI Tooling",
+      "Model Experimentation",
+      "Research Prototypes"
+    ]
+  },
+  {
+    title: "Practice Playground",
+    description: "A personal sandbox repository used for practicing new concepts, algorithms, and small coding experiments to sharpen programming fundamentals.",
+    github: "https://github.com/Nithish06-ux/practice",
+    image: "/lovable-uploads/f558f7d2-cb1d-4a4d-a48d-f233d5d14976.png",
+    technologies: ["JavaScript", "Algorithms", "DSA", "Experiments"],
+    category: "Learning",
+    icon: Code,
+    color: "from-yellow-500 to-orange-500",
+    features: [
+      "Algorithm Practice",
+      "Concept Prototyping",
+      "Daily Coding Drills",
+      "Snippets & Utilities"
+    ]
+  },
+  {
+    title: "Nithish Sandbox",
+    description: "A miscellaneous repository containing early experiments, boilerplates, and learning snippets from the initial phase of my development journey.",
+    github: "https://github.com/Nithish06-ux/nithish",
+    image: "/lovable-uploads/f558f7d2-cb1d-4a4d-a48d-f233d5d14976.png",
+    technologies: ["HTML", "CSS", "JavaScript", "Boilerplates"],
+    category: "Experiments",
+    icon: UserCheck,
+    color: "from-pink-500 to-rose-500",
+    features: [
+      "Early Project Snippets",
+      "Learning Milestones",
+      "Starter Templates",
+      "Personal Notes"
+    ]
   }
 ];
 
