@@ -1,6 +1,7 @@
 
 import { ArrowDown, Download, Github, Linkedin, Mail } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import resumeAsset from "@/assets/Kungumanithish_K_Resume.pdf.asset.json";
 import { socialLinks } from "@/data/portfolio-data";
 
 const Hero = () => {
@@ -49,7 +50,7 @@ const Hero = () => {
           </div>
 
           <div className="flex justify-center lg:justify-start">
-            <a href="/resume.pdf" download>
+            <a href={resumeAsset.url} download="Kungumanithish_K_Resume.pdf" target="_blank" rel="noopener noreferrer">
               <Button 
                 variant="ghost" 
                 className="text-gray-400 hover:text-purple-400 border border-slate-600 hover:border-purple-500/50 rounded-full px-6 py-2 transition-all duration-300 flex items-center gap-2"
