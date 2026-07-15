@@ -99,7 +99,7 @@ const About = () => {
               }`}
             >
               <div className="text-center p-4 bg-slate-800/30 rounded-lg border border-slate-700/50">
-                <div className="text-2xl font-bold text-purple-400">2+</div>
+                <div className="text-2xl font-bold text-purple-400">4+</div>
                 <div className="text-gray-400 text-sm">Years of Study</div>
               </div>
               <div className="text-center p-4 bg-slate-800/30 rounded-lg border border-slate-700/50">
