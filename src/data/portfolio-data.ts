@@ -231,6 +231,6 @@ export const contactInfo = [
 // Social links used across Hero, Contact, and Footer
 export const socialLinks = {
   github: "https://github.com/Nithish06-ux",
-  linkedin: "https://www.linkedin.com/in/kungumanithish",
+  linkedin: "https://www.linkedin.com/in/kungumanithish-k",
   email: "mailto:kungumanithish@gmail.com",
 };
