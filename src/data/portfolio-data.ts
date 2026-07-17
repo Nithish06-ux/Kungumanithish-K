@@ -49,8 +49,8 @@ export const skillCategories = [
 
 // Technologies & tools chips used by Skills section
 export const techTools = [
-  'Figma', 'Adobe XD', 'HTML5', 'CSS3', 'JavaScript', 'Python', 'Git', 'VS Code',
-  'Photoshop', 'Illustrator', 'React', 'Tailwind CSS'
+  'Figma', 'HTML5', 'CSS3', 'JavaScript', 'Python', 'Node', 'SQL', 'MERN', 'Git', 'VS Code',
+  'React', 'Tailwind CSS'
 ];
 
 export const projects = [
