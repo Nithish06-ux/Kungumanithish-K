@@ -1,0 +1,447 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========== Cyberpunk HUD Base Styles ========== */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+body {
+  background-color: #06090e;
+  color: #e2e8f0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ========== Custom Scrollbar ========== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #080d14;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00f2fe, #0284c7);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #38bdf8, #00f2fe);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #00f2fe #080d14;
+}
+
+/* ========== Cyberpunk Utilities ========== */
+@layer utilities {
+  .cyber-font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .cyber-border {
+    border: 1px solid rgba(56, 189, 248, 0.25);
+  }
+
+  .cyber-border-glow {
+    border: 1px solid rgba(0, 242, 254, 0.6);
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.25), inset 0 0 15px rgba(0, 242, 254, 0.1);
+  }
+
+  .cyber-card {
+    background: rgba(11, 16, 24, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+  }
+
+  .cyber-card:hover {
+    border-color: rgba(0, 242, 254, 0.45);
+    box-shadow: 0 12px 35px rgba(0, 242, 254, 0.12);
+  }
+
+  .cyber-pill {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    color: #94a3b8;
+    transition: all 0.25s ease;
+  }
+
+  .cyber-pill:hover {
+    border-color: rgba(0, 242, 254, 0.7);
+    color: #00f2fe;
+    box-shadow: 0 0 12px rgba(0, 242, 244, 0.25);
+  }
+
+  .cyber-pill-active {
+    background: rgba(0, 242, 254, 0.12);
+    border-color: #00f2fe;
+    color: #00f2fe;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.3), inset 0 0 10px rgba(0, 242, 254, 0.15);
+  }
+
+  .cyber-glow-cyan {
+    text-shadow: 0 0 12px rgba(0, 242, 254, 0.75), 0 0 24px rgba(0, 242, 254, 0.35);
+  }
+
+  .cyber-glow-subtle {
+    text-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
+  }
+
+  .cyber-btn {
+    position: relative;
+    background: rgba(11, 19, 31, 0.85);
+    border: 1px solid rgba(0, 242, 254, 0.5);
+    color: #00f2fe;
+    transition: all 0.3s ease;
+  }
+
+  .cyber-btn:hover {
+    background: rgba(0, 242, 254, 0.15);
+    border-color: #00f2fe;
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+    transform: translateY(-2px);
+  }
+
+  .cyber-btn:active {
+    transform: translateY(0);
+  }
+
+  .gradient-cyan-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-sky-300 to-teal-300;
+  }
+}
+
+/* ========== Cyber Background Grid ========== */
+.cyber-grid {
+  background-image: 
+    linear-gradient(rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.cyber-grid-dense {
+  background-image: 
+    linear-gradient(rgba(0, 242, 254, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 242, 254, 0.08) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Radar scanline animation */
+@keyframes radarSweep {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(1000%); }
+}
+
+.radar-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0, 242, 254, 0.8), transparent);
+  box-shadow: 0 0 15px rgba(0, 242, 254, 0.8);
+  animation: radarSweep 8s linear infinite;
+  pointer-events: none;
+}
+
+/* Corner bracket styles */
+.corner-bracket {
+  position: relative;
+}
+
+.corner-bracket::before,
+.corner-bracket::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: #00f2fe;
+  pointer-events: none;
+}
+
+.corner-bracket::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid #00f2fe;
+  border-left: 2px solid #00f2fe;
+}
+
+.corner-bracket::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid #00f2fe;
+  border-right: 2px solid #00f2fe;
+}
+
+/* Pulsing cyber dot */
+@keyframes cyberPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.cyber-pulse {
+  animation: cyberPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 242, 254, 0.35);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   LIGHT MODE: SCI-FI LAB CLEAN THEME (HIGH-CONTRAST & CRISP TYPOGRAPHY)
+   ========================================================================== */
+html.light,
+html.light body,
+.light-mode {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+/* Scrollbar in Light Mode */
+html.light ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+html.light ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #0284c7, #38bdf8);
+}
+html.light * {
+  scrollbar-color: #0284c7 #f1f5f9;
+}
+
+/* Selection in Light Mode */
+html.light ::selection {
+  background: rgba(14, 165, 233, 0.25) !important;
+  color: #0369a1 !important;
+}
+
+/* Header & Footer in Light Mode */
+html.light header {
+  background-color: rgba(255, 255, 255, 0.94) !important;
+  border-bottom-color: rgba(14, 165, 233, 0.25) !important;
+  box-shadow: 0 4px 20px rgba(14, 165, 233, 0.08) !important;
+}
+html.light footer {
+  background-color: #f1f5f9 !important;
+  border-top-color: rgba(14, 165, 233, 0.2) !important;
+}
+
+/* Cards & Containers in Light Mode */
+html.light .cyber-card {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(14, 165, 233, 0.32) !important;
+  box-shadow: 0 10px 30px rgba(14, 165, 233, 0.08), 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+html.light .cyber-card:hover {
+  border-color: #0284c7 !important;
+  box-shadow: 0 14px 40px rgba(14, 165, 233, 0.16) !important;
+}
+
+/* Grid & Radar in Light Mode */
+html.light .cyber-grid {
+  background-image: 
+    linear-gradient(rgba(14, 165, 233, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14, 165, 233, 0.08) 1px, transparent 1px) !important;
+}
+html.light .radar-line {
+  background: linear-gradient(90deg, transparent, rgba(2, 132, 199, 0.6), transparent) !important;
+  box-shadow: 0 0 10px rgba(2, 132, 199, 0.4) !important;
+}
+
+/* Typography Overrides in Light Mode */
+html.light .text-slate-100 {
+  color: #0f172a !important; /* deep rich heading */
+}
+html.light .text-slate-200 {
+  color: #1e293b !important; /* strong body text */
+}
+html.light .text-slate-300 {
+  color: #334155 !important; /* readable secondary text */
+}
+html.light .text-slate-400 {
+  color: #64748b !important; /* clear muted text */
+}
+html.light .text-slate-500 {
+  color: #64748b !important;
+}
+
+/* High-Contrast Cyan & Sky Blue Text in Light Mode */
+html.light .text-cyan-200,
+html.light .text-cyan-300 {
+  color: #0369a1 !important; /* Deep sapphire blue with 7:1 contrast on white */
+}
+html.light .text-cyan-400 {
+  color: #0284c7 !important; /* Vivid tech sky blue */
+}
+html.light .text-cyan-400\/70,
+html.light .text-cyan-400\/80,
+html.light .text-cyan-400\/90 {
+  color: #0369a1 !important;
+}
+html.light .gradient-cyan-text {
+  background-image: linear-gradient(to right, #0284c7, #0f766e) !important;
+  -webkit-background-clip: text !important;
+  color: transparent !important;
+}
+html.light .cyber-glow-cyan {
+  text-shadow: 0 0 12px rgba(14, 165, 233, 0.28) !important;
+}
+
+/* Badges, Pills & Buttons in Light Mode */
+html.light .cyber-pill {
+  background-color: #f1f5f9 !important;
+  border-color: rgba(14, 165, 233, 0.3) !important;
+  color: #475569 !important;
+}
+html.light .cyber-pill:hover {
+  border-color: #0284c7 !important;
+  color: #0369a1 !important;
+  background-color: #e0f2fe !important;
+}
+html.light .cyber-pill-active {
+  background-color: rgba(14, 165, 233, 0.15) !important;
+  border-color: #0284c7 !important;
+  color: #0369a1 !important;
+}
+
+/* Background fills in Light Mode */
+html.light .bg-slate-900\/60,
+html.light .bg-slate-900\/80,
+html.light .bg-slate-900 {
+  background-color: rgba(241, 245, 249, 0.9) !important;
+}
+html.light .bg-slate-950,
+html.light .bg-\[\#040811\],
+html.light .bg-\[\#04070c\],
+html.light .bg-\[\#040913\],
+html.light .bg-\[\#06090e\],
+html.light .bg-\[\#03060c\],
+html.light .bg-\[\#02050b\] {
+  background-color: #ffffff !important;
+}
+
+/* Tinted Cyan Box Fills in Light Mode */
+html.light .bg-cyan-500\/10,
+html.light .bg-cyan-500\/15,
+html.light .bg-cyan-500\/20,
+html.light .bg-cyan-500\/25,
+html.light .bg-cyan-500\/30,
+html.light .bg-cyan-950\/40,
+html.light .bg-cyan-950\/50,
+html.light .bg-cyan-950\/60 {
+  background-color: rgba(224, 242, 254, 0.85) !important;
+  color: #0369a1 !important;
+}
+
+/* Borders in Light Mode */
+html.light .border-cyan-500\/15,
+html.light .border-cyan-500\/20,
+html.light .border-cyan-500\/25,
+html.light .border-cyan-500\/30,
+html.light .border-cyan-500\/40 {
+  border-color: rgba(14, 165, 233, 0.3) !important;
+}
+html.light .border-cyan-400 {
+  border-color: #0284c7 !important;
+}
+html.light .border-cyan-400\/60,
+html.light .border-cyan-400\/70,
+html.light .border-cyan-400\/80 {
+  border-color: #0284c7 !important;
+}
+
+/* Active Section Tabs & Interactive Buttons in Light Mode */
+html.light button.border-cyan-400 {
+  background-color: rgba(224, 242, 254, 0.9) !important;
+  color: #0369a1 !important;
+  box-shadow: 0 0 12px rgba(14, 165, 233, 0.2) !important;
+}
+
+/* Nav Links in Light Mode */
+html.light header nav button {
+  color: #475569 !important;
+}
+html.light header nav button:hover {
+  color: #0f172a !important;
+}
+html.light header nav button.text-cyan-300 {
+  color: #0284c7 !important;
+}
+
+/* Terminal & Preview Graphics in Light Mode */
+html.light #home .bg-\[\#04070c\],
+html.light .bg-\[\#040913\] {
+  background-color: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+}
+html.light #home .text-slate-600 {
+  color: #94a3b8 !important;
+}
+html.light .text-emerald-400 {
+  color: #059669 !important; /* Rich deep emerald in light mode */
+}
+html.light .bg-slate-800 {
+  background-color: #e2e8f0 !important;
+}
+
+/* Case Study Problem & Solution Boxes in Light Mode */
+html.light .border-red-500\/20 {
+  background-color: #fff5f5 !important;
+  border-color: #fecaca !important;
+}
+html.light .border-red-500\/20 .text-red-400 {
+  color: #dc2626 !important;
+}
+html.light .border-red-500\/20 p {
+  color: #450a0a !important;
+}
+html.light .border-emerald-500\/20 {
+  background-color: #f0fdf4 !important;
+  border-color: #bbf7d0 !important;
+}
+html.light .border-emerald-500\/20 .text-emerald-400 {
+  color: #16a34a !important;
+}
+html.light .border-emerald-500\/20 p {
+  color: #052e16 !important;
+}
+
+/* Inputs & Form Elements in Light Mode */
+html.light input,
+html.light textarea {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+html.light input:focus,
+html.light textarea:focus {
+  border-color: #0284c7 !important;
+  box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.2) !important;
+}
+html.light input::placeholder,
+html.light textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Corner Brackets in Light Mode */
+html.light .border-t-2.border-l-2.border-cyan-400,
+html.light .border-t-2.border-r-2.border-cyan-400,
+html.light .border-b-2.border-l-2.border-cyan-400,
+html.light .border-b-2.border-r-2.border-cyan-400 {
+  border-color: #0284c7 !important;
+}
+
+/* Modals in Light Mode */
+html.light .bg-black\/80,
+html.light .bg-black\/85 {
+  background-color: rgba(15, 23, 42, 0.5) !important;
+}

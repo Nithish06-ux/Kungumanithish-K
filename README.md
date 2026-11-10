@@ -1,73 +1,107 @@
-# Welcome to your Lovable project
+# Kungumanithish - Portfolio Website
 
-## Project info
+A modern, professional portfolio website built with the **PERN Stack** (PostgreSQL, Express.js, React.js, Node.js).
 
-**URL**: https://lovable.dev/projects/76de0ab2-204e-4413-bad3-872baad769ab
+![PERN Stack](https://img.shields.io/badge/Stack-PERN-blueviolet?style=for-the-badge)
+![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react)
+![Node.js](https://img.shields.io/badge/Node.js-20+-339933?style=for-the-badge&logo=node.js)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15+-4169E1?style=for-the-badge&logo=postgresql)
 
-## How can I edit this code?
+## ✨ Features
 
-There are several ways of editing your application.
+- 🎨 **Stunning Dark Theme** with glassmorphism, gradient accents, and animated particles
+- 🎬 **Smooth Animations** powered by Framer Motion (scroll reveals, typewriter, counters)
+- 📱 **Fully Responsive** design for all screen sizes
+- 📧 **Contact Form** with EmailJS integration + PostgreSQL storage
+- 🔒 **Secure Backend** with Helmet, CORS, and rate limiting
+- ⚡ **Fast** Vite-powered frontend with optimized builds
 
-**Use Lovable**
+## 🛠️ Tech Stack
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/76de0ab2-204e-4413-bad3-872baad769ab) and start prompting.
+| Layer      | Technology                        |
+|------------|-----------------------------------|
+| Frontend   | React.js, Tailwind CSS, Framer Motion |
+| Backend    | Express.js, Node.js               |
+| Database   | PostgreSQL                         |
+| Build Tool | Vite                               |
+| Email      | EmailJS                            |
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🚀 Getting Started
 
-**Use your preferred IDE**
+### Prerequisites
+- Node.js 18+
+- PostgreSQL 15+
+- npm or yarn
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### 1. Clone the repository
+```bash
+git clone https://github.com/Nithish06-ux/nithishkportfolio.git
+cd nithishkportfolio
+```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### 2. Setup PostgreSQL Database
+```bash
+# Create the database
+psql -U postgres -c "CREATE DATABASE portfolio_db;"
 
-Follow these steps:
+# Run the schema
+psql -U postgres -d portfolio_db -f server/models/schema.sql
+```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+### 3. Setup Backend
+```bash
+cd server
+npm install
+cp .env.example .env
+# Edit .env with your database credentials
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### 4. Setup Frontend
+```bash
+cd client
+npm install
+cp .env.example .env
+npm run dev
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### 5. Open in browser
+Visit `http://localhost:5173`
 
-**Use GitHub Codespaces**
+## 📁 Project Structure
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```
+nithishkportfolio/
+├── client/                 # React.js Frontend
+│   ├── src/
+│   │   ├── components/     # UI Components
+│   │   ├── hooks/          # Custom React Hooks
+│   │   ├── api/            # API client functions
+│   │   ├── data/           # Fallback portfolio data
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── package.json
+│   └── vite.config.js
+├── server/                 # Express.js Backend
+│   ├── config/             # Database configuration
+│   ├── routes/             # API routes
+│   ├── models/             # SQL schemas
+│   ├── middleware/          # Express middleware
+│   ├── index.js
+│   └── package.json
+└── README.md
+```
 
-## What technologies are used for this project?
+## 📬 Contact
 
-This project is built with:
+- **Email:** kungumanithish@gmail.com
+- **LinkedIn:** [kungumanithish-k](https://www.linkedin.com/in/kungumanithish-k)
+- **GitHub:** [Nithish06-ux](https://github.com/Nithish06-ux)
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 📄 License
 
-## How can I deploy this project?
+This project is open source and available under the [MIT License](LICENSE).
 
-Simply open [Lovable](https://lovable.dev/projects/76de0ab2-204e-4413-bad3-872baad769ab) and click on Share -> Publish.
+---
 
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+Built with ❤️ by Kungumanithish using the PERN Stack
